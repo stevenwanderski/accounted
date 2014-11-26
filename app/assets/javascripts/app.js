@@ -1,0 +1,1 @@
+accounted = angular.module('accounted',[]);

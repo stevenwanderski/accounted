@@ -1,0 +1,22 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: accounted_development
+  username: root
+  password: root
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: accounted_test
+  username: root
+  password: root
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: accounted_production
+  username: root
+  password: root
