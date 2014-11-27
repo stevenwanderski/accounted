@@ -1,0 +1,24 @@
+<h1>Payments</h1>
+<a href="#/payments/new">Add payment</a>
+
+<table class="table table-striped">
+  <thead>
+    <th>ID</th>
+    <th>Amount</th>
+    <th>Type</th>
+    <th>Date</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="payment in payments">
+      <td>{{payment.id}}</td>
+      <td>{{payment.amount_cents}}</td>
+      <td>{{payment.payment_type}}</td>
+      <td>{{payment.created_at}}</td>
+      <td>
+        <a href="#/payments/{{payment.id}}">Edit</a>
+        <a href="" ng-click="delete(payment)" class="text-danger">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

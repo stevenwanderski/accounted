@@ -1,0 +1,37 @@
+{
+  "name": "ActiveResource",
+  "version": "0.7.7",
+  "authors": [
+    "Brett Shollenberger <brett.shollenberger@gmail.com>"
+  ],
+  "license": "MIT",
+  "main": "dist/ng-active-resource.min.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "active-support": "latest",
+    "angular": "latest",
+    "lodash": "latest",
+    "async": "~0.2.5",
+    "meld": "latest"
+  },
+  "devDependencies": {
+    "angular-route": "latest",
+    "angular-mocks": "latest"
+  },
+  "homepage": "https://github.com/FacultyCreative/ngActiveResource",
+  "_release": "0.7.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.7.7",
+    "commit": "51af01b28825ba8ff65d854f2145648fa4053068"
+  },
+  "_source": "git://github.com/FacultyCreative/ngActiveResource.git",
+  "_target": "*",
+  "_originalSource": "ngActiveResource"
+}

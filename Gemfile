@@ -7,9 +7,14 @@ gem 'devise'
 gem 'simple_form', '>= 3.1.0.rc1'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
+gem 'foreman'
+gem 'awesome_print'
+
+# Front end
 gem 'jquery-rails'
 gem 'bower-rails'
-gem 'foreman'
+gem 'angular-rails-templates'
+
 
 group :development do
   gem 'quiet_assets'
@@ -18,6 +23,8 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'database_cleaner'
+  gem 'capybara-webkit'
 end
 
 group :development, :test do
