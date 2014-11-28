@@ -33,21 +33,21 @@ accounted.config(['$routeProvider', function($routeProvider){
     });
 }]);
 
-accounted.factory('Payment', function($resource) {
+accounted.factory('Payment', ['$resource', function($resource) {
   return $resource('/api/payments/:id', { id: '@id' }, {
     'update': {
       method: 'PUT'
     }
   });
-});
+}]);
 
-accounted.factory('Client', function($resource) {
+accounted.factory('Client', ['$resource', function($resource) {
   return $resource('/api/clients/:id', { id: '@id' }, {
     'update': {
       method: 'PUT'
     }
   });
-});
+}]);
 
 
 // CONTROLLERS
@@ -81,7 +81,6 @@ controllers.controller('PaymentsController', ['$scope', '$routeParams', '$locati
     $scope.delete = function(payment){
       if(confirm("You sure dude?")){
         payment.$delete(function(){
-          // $window.location.reload();
           $scope.init();
         });
       }
@@ -116,7 +115,7 @@ controllers.controller('ClientsController', ['$scope', '$routeParams', '$locatio
     $scope.delete = function(client){
       if(confirm("You sure dude?")){
         client.$delete(function(){
-          $window.location.href = '/clients';
+          $scope.init();
         });
       }
     }
