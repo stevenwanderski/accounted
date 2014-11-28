@@ -1,0 +1,20 @@
+<h1>Clients</h1>
+<a href="#/clients/new">Add client</a>
+
+<table class="table table-striped">
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="client in clients">
+      <td>{{client.id}}</td>
+      <td>{{client.name}}</td>
+      <td>
+        <a href="#/clients/{{client.id}}">Edit</a>
+        <a href="" ng-click="delete(client)" class="text-danger">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,13 +1,13 @@
 class Api::ClientsController < ApplicationController
   # GET /clients
   def index
-    clients = Client.includes(:projects).all
+    clients = current_user.clients
     render json: clients, root: false
   end
 
   # POST /clients
   def create
-    client = Client.new(client_params)
+    client = Client.new(client_params.merge(user_id: current_user.id))
     if client.save
       render json: client, root: false, status: :created
     else
@@ -47,6 +47,6 @@ class Api::ClientsController < ApplicationController
   private
 
   def client_params
-    params.require(:client).permit(:name)
+    params.permit(:name)
   end
 end

@@ -1,5 +1,6 @@
 <div ng-app="accounted" class="container">
   <h5>Hey <%= current_user.email %> - <%= link_to "Logout", destroy_user_session_path %></h5>
+  <a href="#/">Payments</a> <a href="#/clients">Clients</a>
   <div class="view-container">
     <div ng-view class="view-frame animate-view"></div>
   </div>

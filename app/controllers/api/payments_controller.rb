@@ -47,6 +47,6 @@ class Api::PaymentsController < ApiController
   private
 
   def payment_params
-    params.permit(:amount_cents, :client_id, :note, :payment_type)
+    params.permit(:amount_cents, :client_id, :note, :payment_type, :client)
   end
 end

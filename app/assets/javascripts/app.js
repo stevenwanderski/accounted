@@ -18,6 +18,18 @@ accounted.config(['$routeProvider', function($routeProvider){
     .when('/payments/:paymentId', {
       templateUrl: 'payments/edit.html',
       controller: 'PaymentsController'
+    })
+    .when('/clients', {
+      templateUrl: 'clients/index.html',
+      controller: 'ClientsController'
+    })
+    .when('/clients/new', {
+      templateUrl: 'clients/new.html',
+      controller: 'ClientsController'
+    })
+    .when('/clients/:clientId', {
+      templateUrl: 'clients/edit.html',
+      controller: 'ClientsController'
     });
 }]);
 
@@ -41,10 +53,12 @@ accounted.factory('Client', function($resource) {
 // CONTROLLERS
 controllers = angular.module('controllers',[]);
 
-controllers.controller('PaymentsController', ['$scope', '$routeParams', '$location', 'Payment',
-  function($scope, $routeParams, $location, Payment){
+controllers.controller('PaymentsController', ['$scope', '$routeParams', '$location', 'Payment', 'Client',
+  function($scope, $routeParams, $location, Payment, Client){
 
     $scope.init = function(){
+      $scope.clients = Client.query();
+
       if($routeParams.paymentId){
         $scope.payment = Payment.get({ id: $routeParams.paymentId })
       }else if($location.path() == '/'){
@@ -59,14 +73,51 @@ controllers.controller('PaymentsController', ['$scope', '$routeParams', '$locati
     }
 
     $scope.update = function(){
-      Payment.update({ id: $scope.payment.id }, $scope.payment);
-      $location.path('/');
+      Payment.update({ id: $scope.payment.id }, $scope.payment, function(){
+        $location.path('/');
+      });
     }
 
     $scope.delete = function(payment){
       if(confirm("You sure dude?")){
-        payment.$delete();
-        $window.location.href = '';
+        payment.$delete(function(){
+          // $window.location.reload();
+          $scope.init();
+        });
+      }
+    }
+
+    $scope.init();
+}]);
+
+controllers.controller('ClientsController', ['$scope', '$routeParams', '$location', 'Client',
+  function($scope, $routeParams, $location, Client){
+
+    $scope.init = function(){
+      if($routeParams.clientId){
+        $scope.client = Client.get({ id: $routeParams.clientId })
+      }else if($location.path() == '/clients'){
+        $scope.clients = Client.query();
+      }
+    }
+
+    $scope.save = function(){
+      Client.save($scope.client, function(){
+        $location.path('/clients');
+      });
+    }
+
+    $scope.update = function(){
+      Client.update({ id: $scope.client.id }, $scope.client, function(){
+        $location.path('/clients');
+      });
+    }
+
+    $scope.delete = function(client){
+      if(confirm("You sure dude?")){
+        client.$delete(function(){
+          $window.location.href = '/clients';
+        });
       }
     }
 
