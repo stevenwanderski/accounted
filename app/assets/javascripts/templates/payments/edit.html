@@ -1,9 +1,14 @@
 <h1>Edit Payment</h1>
 
-<form ng-submit="update()">
+<form>
   <div class="form-group">
     <label for="">Amount:</label>
     <input type="number" name="amount_cents" ng-model="payment.amount_cents" />
+  </div>
+
+  <div class="form-group">
+    <label for="payment-date">Date:</label>
+    <input type="text" id="payment-date" date-input name="date" ng-model="payment.date" class="date-picker" />
   </div>
 
   <div class="form-group">
@@ -16,10 +21,16 @@
   </div>
 
   <div class="form-group">
-    <select ng-model="payment.client_id" ng-options="client.id as client.name for client in clients">
+    <select ng-model="payment.client_id" ng-options="client.id as client.name for client in clients | orderBy: 'name'">
       <option value="">Select client (optional)</option>
     </select>
+    <a href="" ng-click="showClientNew()">Add client</a>
+    <div id="new-client-form" style="display: none;">
+      <input type="text" ng-model="client.name">
+      <button ng-click="saveClient()">Create client</button>
+      <a href="" ng-click="hideClientNew()">Cancel</a>
+    </div>
   </div>
 
-  <button>Update</button> <a href="#/">Cancel</a>
+  <button ng-click="update()">Save</button> <a href="#/">Cancel</a>
 </form>

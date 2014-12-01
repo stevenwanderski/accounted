@@ -1,4 +1,4 @@
-controllers = angular.module('controllers',[]);
+controllers = angular.module('controllers');
 
 controllers.controller('ClientsController', ['$scope', '$routeParams', '$location', 'Client',
   function($scope, $routeParams, $location, Client){

@@ -1,4 +1,6 @@
 class Api::PaymentsController < ApiController
+  # before_filter :parse_date, only: [:create, :update]
+
   # GET /payments
   def index
     payments = current_user.payments
@@ -46,7 +48,11 @@ class Api::PaymentsController < ApiController
 
   private
 
+  def parse_date
+    params[:date] = Date.strptime(params[:date], '%m/%d/%Y')
+  end
+
   def payment_params
-    params.permit(:amount_cents, :client_id, :note, :payment_type, :client)
+    params.permit(:amount_cents, :client_id, :note, :payment_type, :date)
   end
 end

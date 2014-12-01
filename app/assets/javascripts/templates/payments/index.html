@@ -14,7 +14,7 @@
       <td>{{payment.id}}</td>
       <td>{{payment.amount_cents}}</td>
       <td>{{payment.payment_type}}</td>
-      <td>{{payment.created_at}}</td>
+      <td>{{payment.date | date: 'MM/dd/yyyy' }}</td>
       <td>
         <a href="#/payments/{{payment.id}}">Edit</a>
         <a href="" ng-click="delete(payment)" class="text-danger">Delete</a>

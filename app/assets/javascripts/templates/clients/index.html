@@ -8,7 +8,7 @@
     <th></th>
   </thead>
   <tbody>
-    <tr ng-repeat="client in clients">
+    <tr ng-repeat="client in clients | orderBy: 'name'">
       <td>{{client.id}}</td>
       <td>{{client.name}}</td>
       <td>

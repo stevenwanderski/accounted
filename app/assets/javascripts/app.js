@@ -33,6 +33,8 @@ accounted.config(['$routeProvider', function($routeProvider){
     });
 }]);
 
+controllers = angular.module('controllers', []);
+
 accounted.factory('Payment', ['$resource', function($resource) {
   return $resource('/api/payments/:id', { id: '@id' }, {
     'update': {
@@ -49,4 +51,18 @@ accounted.factory('Client', ['$resource', function($resource) {
   });
 }]);
 
-controllers = angular.module('controllers',[]);
+accounted.directive('dateInput', ['dateFilter', function(dateFilter) {
+  return {
+    restrict: 'A',
+    require: 'ngModel',
+    link: function(scope, element, attrs, ngModel) {
+      ngModel.$formatters.push(function(modelValue) {
+        return dateFilter(modelValue, 'M/dd/yyyy');
+      });
+
+      ngModel.$parsers.push(function(viewValue) {
+        return new Date(viewValue);
+      });
+    }
+  }
+}]);

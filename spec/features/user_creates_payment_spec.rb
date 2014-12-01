@@ -8,6 +8,8 @@ describe "user creates a payment", js: true do
     click_link "Add payment"
 
     fill_in "amount_cents", with: "100"
+    find("input[name='date']").set("11/15/2014")
+    find("body").click
     choose "type-expense"
     click_button "Save"
 
